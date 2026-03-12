@@ -1,9 +1,12 @@
 name: Scheduled Cron Job
 
-# Trigger the workflow on a schedule
+# Trigger the workflow on a schedule, manual dispatch, or when this file changes
 on:
+  push:
+    paths:
+      - '.github/workflows/cronjob.yml'  # Run only if this workflow file changes
   schedule:
-    - cron: '3 * * * *'  # Runs every day at 2:00 AM UTC
+    - cron: '2 * * * *'  # Runs every 2 minutes
   workflow_dispatch:      # Allows manual trigger from GitHub UI
 
 jobs:
@@ -26,4 +29,4 @@ jobs:
       - name: Run a script
         run: |
           echo "Hello! This cron job ran at $(date)"
-          # You can add any commands or scripts you want to run here
+          # Add any commands or scripts you want to run here
