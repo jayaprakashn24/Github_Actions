@@ -1,0 +1,29 @@
+name: Scheduled Cron Job
+
+# Trigger the workflow on a schedule
+on:
+  schedule:
+    - cron: '3 * * * *'  # Runs every day at 2:00 AM UTC
+  workflow_dispatch:      # Allows manual trigger from GitHub UI
+
+jobs:
+  example_cron_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Run Python code
+        run: |
+          python -c "print('Hello from GitHub Actions!')"
+
+      - name: Run a script
+        run: |
+          echo "Hello! This cron job ran at $(date)"
+          # You can add any commands or scripts you want to run here
