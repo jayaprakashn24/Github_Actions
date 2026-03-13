@@ -2,7 +2,7 @@ name: Simple Python Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches: main 
 
 jobs:
   run-python:
